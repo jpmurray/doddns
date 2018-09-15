@@ -1,37 +1,29 @@
-<p align="center">
-    <img title="Laravel Zero" height="100" src="https://raw.githubusercontent.com/laravel-zero/docs/master/images/logo/laravel-zero-readme.png" />
-</p>
+# doddns
 
-<p align="center">
-  <a href="https://travis-ci.org/laravel-zero/framework"><img src="https://img.shields.io/travis/laravel-zero/framework/stable.svg" alt="Build Status"></img></a>
-  <a href="https://scrutinizer-ci.com/g/laravel-zero/framework"><img src="https://img.shields.io/scrutinizer/g/laravel-zero/framework.svg" alt="Quality Score"></img></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/d/total.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/v/stable.svg" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/license.svg" alt="License"></a>
-</p>
+A small PHP thigny to use one's domain added to Digital Ocean as a dynamic dns service make with [Laravel Zero](https://github.com/laravel-zero/laravel-zero).
 
-<h4> <center>This is a <bold>community project</bold> and not an official Laravel one </center></h4>
+## What is needed
 
-Laravel Zero was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is a micro-framework that provides an elegant starting point for your console application. It is an **unofficial** and customized version of Laravel optimized for building command-line applications.
+- A Digital Ocean [Personal Access Token](https://www.digitalocean.com/docs/api/create-personal-access-token/).
+- Some domains added to your account.
+- A `cname` or `A` records added to a domain for us to update.
 
-- Built on top of the [Laravel](https://laravel.com) components.
-- Optional installation of Laravel [Eloquent](http://laravel-zero.com/#/?id=database), Laravel [Logging](http://laravel-zero.com/#/?id=log) and many others.
-- Supports interactive [menus](http://laravel-zero.com/#/?id=interactive-menus) and [desktop notifications](http://laravel-zero.com/#/?id=desktop-notifications) on Linux, Windows & MacOS.
-- Ships with a [Scheduler](http://laravel-zero.com/#/?id=scheduler) and a [Standalone Compiler](http://laravel-zero.com/#/?id=build-a-standalone-application).
-- Integration with [Collision](https://github.com/nunomaduro/collision) - Beautiful error reporting
+## How to use
 
-------
+Depending on your mood, you can either [download the compiled version](https://github.com/jpmurray/doddns/raw/master/builds/doddns) or [build it yourself](https://laravel-zero.com/#/usage?id=building-a-standalone-application), then add it to your `$PATH` and run the setup command... And you're good to go!
 
-## Documentation
+### Cron
+If you want doddns to autoupdate with your current IP address, you should add an ntry to your cron tab like so: `* * * * * php /path-to-doddns/doddns schedule:run >> /dev/null 2>&1`.
 
-For full documentation, visit [laravel-zero.com](http://laravel-zero.com/).
+After that, doddns will try to update every hours by itself.
 
-## Support the development
-**Do you like this project? Support it by donating**
+### Available commands
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L)
-- Patreon: [Donate](https://www.patreon.com/nunomaduro)
+You can then use the `doddns` command to see a list of possible actions:
 
-## License
-
-Laravel Zero is an open-source software licensed under the [MIT license](https://github.com/laravel-zero/laravel-zero/blob/stable/LICENSE.md).
+- `doddns setup`: will create local database and asks for DO personal acces token.
+- `doddns set-token {token}`: will set your DO personal access token, overwriting any existing value.
+- `doddns records:list`: list any added record that doddns tries to update.
+- `doddns records:add`: add a record to update to the database from exiting DO domains.
+- `doddns records:remove`: removes a record from doddns' database.
+- `doddns records:update`: updates records in database with actual IP.
