@@ -8,7 +8,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\DB;
 use LaravelZero\Framework\Commands\Command;
 
-class RecordsToUpdate extends Command
+class AddRecord extends Command
 {
     /**
      * The signature of the command.

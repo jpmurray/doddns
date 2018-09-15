@@ -6,7 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\DB;
 use LaravelZero\Framework\Commands\Command;
 
-class RemoveRecordsFromUpdate extends Command
+class RemoveRecord extends Command
 {
     /**
      * The signature of the command.
