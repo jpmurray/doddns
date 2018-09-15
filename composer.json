@@ -52,5 +52,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "bin": ["do-ddns"]
+    "bin": ["doddns"]
 }
