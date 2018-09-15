@@ -4,6 +4,7 @@ A small PHP thigny to use one's domain added to Digital Ocean as a dynamic dns s
 
 ## What is needed
 
+- PHP 7.1.3+
 - A Digital Ocean [Personal Access Token](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 - Some domains added to your account.
 - A `cname` or `A` records added to a domain for us to update.
