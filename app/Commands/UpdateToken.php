@@ -14,7 +14,7 @@ class UpdateToken extends Command
      *
      * @var string
      */
-    protected $signature = 'token {token : Your DigitalOcean Personnal Access Token}';
+    protected $signature = 'set-token {token : Your DigitalOcean Personnal Access Token}';
 
     /**
      * The description of the command.

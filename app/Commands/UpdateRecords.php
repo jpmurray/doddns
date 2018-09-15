@@ -16,7 +16,7 @@ class UpdateRecords extends Command
      *
      * @var string
      */
-    protected $signature = 'update-records';
+    protected $signature = 'records:update';
 
     /**
      * The description of the command.

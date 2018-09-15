@@ -13,7 +13,7 @@ class RemoveRecordsFromUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'remove-record';
+    protected $signature = 'records:remove';
 
     /**
      * The description of the command.

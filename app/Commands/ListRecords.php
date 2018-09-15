@@ -13,7 +13,7 @@ class ListRecords extends Command
      *
      * @var string
      */
-    protected $signature = 'list-records';
+    protected $signature = 'records:list';
 
     /**
      * The description of the command.
