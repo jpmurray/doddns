@@ -60,6 +60,11 @@ class RecordsToUpdate extends Command
 
         $selected_domain = $this->menu("Which domain?", $domains)->open();
 
+        if ($selected_domain === null) {
+            $this->info("Nothing selected. Exiting.");
+            return;
+        }
+
         $records = collect($this->domainRecord->getAll($selected_domain))->filter(function ($record) {
             return $record->type == "CNAME" || $record->type == "A";
         });
@@ -69,6 +74,11 @@ class RecordsToUpdate extends Command
         })->toArray();
         
         $selected_record = $this->menu("Which record?", $records_for_menu)->open();
+
+        if ($selected_record === null) {
+            $this->info("Nothing selected. Exiting.");
+            return;
+        }
 
         DB::table('records')->insert(
             ['domain' => $selected_domain,
