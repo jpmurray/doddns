@@ -30,6 +30,7 @@ class RemoveRecord extends Command
     public function handle()
     {
         $records = DB::table('records')->get();
+        
         $records_for_menu = collect($records)->mapWithKeys(function ($record) {
             return [$record->id => "({$record->record_type}) {$record->record_name} of {$record->domain}"];
         })->toArray();
