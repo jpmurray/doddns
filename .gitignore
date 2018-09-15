@@ -3,5 +3,3 @@
 /.vscode
 /.vagrant
 /database/database.sqlite
-
-storage/database\.sqlite

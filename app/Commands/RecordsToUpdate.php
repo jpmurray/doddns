@@ -15,7 +15,7 @@ class RecordsToUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'records:add-to-list';
+    protected $signature = 'records:add';
 
     /**
      * The description of the command.
