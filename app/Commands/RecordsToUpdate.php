@@ -3,8 +3,7 @@
 namespace App\Commands;
 
 use App\Helpers\DigitalOceanHelper;
-use DigitalOceanV2\Adapter\GuzzleHttpAdapter;
-use DigitalOceanV2\DigitalOceanV2;
+use App\Helpers\SettingsHelper;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\DB;
 use LaravelZero\Framework\Commands\Command;
@@ -37,16 +36,14 @@ class RecordsToUpdate extends Command
      */
     public function handle()
     {
-        $this->settings = DB::table('settings')->get();
+        $this->settings = new SettingsHelper();
 
-        if ($this->settings->isNotEmpty()) {
-            $this->token = $this->settings->first()->token;
-        } else {
-            $this->error("There is no settings to the database.");
+        if ($this->settings->error !== null) {
+            $this->error($this->settings->error);
             return;
         }
 
-        $this->digitalocean = new DigitalOceanHelper($this->token);
+        $this->digitalocean = new DigitalOceanHelper($this->settings->getToken());
         
         $domains = collect($this->digitalocean->domain->getAll())->mapWithKeys(function ($values) {
             return [$values->name => $values->name];

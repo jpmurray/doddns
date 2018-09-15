@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use App\Helpers\DigitalOceanHelper;
+use App\Helpers\SettingsHelper;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\DB;
 use Ipify\Ip;
@@ -25,7 +26,6 @@ class UpdateRecords extends Command
     protected $description = 'Update saved records to current IP address.';
 
     protected $settings;
-    protected $token;
 
     private $digitalocean;
 
@@ -36,17 +36,14 @@ class UpdateRecords extends Command
      */
     public function handle()
     {
+        $this->settings = new SettingsHelper();
 
-        $this->settings = DB::table('settings')->get();
-
-        if ($this->settings->isNotEmpty()) {
-            $this->token = $this->settings->first()->token;
-        } else {
-            $this->error("There is no settings to the database.");
+        if ($this->settings->error !== null) {
+            $this->error($this->settings->error);
             return;
         }
 
-        $this->digitalocean = new DigitalOceanHelper($this->token);
+        $this->digitalocean = new DigitalOceanHelper($this->settings->getToken());
 
         $current_ip = Ip::get();
         $records_to_update = DB::table('records')->get();
