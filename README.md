@@ -12,6 +12,11 @@ A small PHP thigny to use one's domain added to Digital Ocean as a dynamic dns s
 
 Depending on your mood, you can either [download the compiled version](https://github.com/jpmurray/doddns/raw/master/builds/doddns) or [build it yourself](https://laravel-zero.com/#/usage?id=building-a-standalone-application), then add it to your `$PATH` and run the setup command... And you're good to go!
 
+### Cron
+If you want doddns to autoupdate with your current IP address, you should add an ntry to your cron tab like so: `* * * * * php /path-to-doddns/doddns schedule:run >> /dev/null 2>&1`.
+
+After that, doddns will try to update every hours by itself.
+
 ### Available commands
 
 You can then use the `doddns` command to see a list of possible actions:
