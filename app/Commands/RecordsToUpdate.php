@@ -28,10 +28,7 @@ class RecordsToUpdate extends Command
     protected $settings;
     protected $token;
 
-    private $adapter;
     private $digitalocean;
-    private $domain;
-    private $domainRecord;
 
     /**
      * Execute the console command.
@@ -49,12 +46,9 @@ class RecordsToUpdate extends Command
             return;
         }
 
-        $this->adapter = new GuzzleHttpAdapter($this->token);
-        $this->digitalocean = new DigitalOceanV2($this->adapter);
-        $this->domain = $this->digitalocean->domain();
-        $this->domainRecord = $this->digitalocean->domainRecord();
-
-        $domains = collect($this->domain->getAll())->mapWithKeys(function ($values) {
+        $this->digitalocean = new DigitalOceanHelper($this->token);
+        
+        $domains = collect($this->digitalocean->domain->getAll())->mapWithKeys(function ($values) {
             return [$values->name => $values->name];
         })->toArray();
 
@@ -65,7 +59,7 @@ class RecordsToUpdate extends Command
             return;
         }
 
-        $records = collect($this->domainRecord->getAll($selected_domain))->filter(function ($record) {
+        $records = collect($this->digitalocean->domainRecord->getAll($selected_domain))->filter(function ($record) {
             return $record->type == "CNAME" || $record->type == "A";
         });
 
