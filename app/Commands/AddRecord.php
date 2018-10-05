@@ -45,9 +45,7 @@ class AddRecord extends Command
 
         $this->digitalocean = new DigitalOceanHelper($this->settings->getToken());
         
-        $domains = collect($this->digitalocean->domain->getAll())->mapWithKeys(function ($values) {
-            return [$values->name => $values->name];
-        })->toArray();
+        $domains = $this->digitalocean->getDomains();
 
         $selected_domain = $this->menu("Which domain?", $domains)->open();
 
@@ -56,9 +54,7 @@ class AddRecord extends Command
             return;
         }
 
-        $records = collect($this->digitalocean->domainRecord->getAll($selected_domain))->filter(function ($record) {
-            return $record->type == "CNAME" || $record->type == "A";
-        });
+        $records = $this->digitalocean->getDomainRecords($selected_domain);
 
         $records_for_menu = $records->mapWithKeys(function ($values, $key) {
             return [$key => "{$values->name} ({$values->type}): {$values->data}"];

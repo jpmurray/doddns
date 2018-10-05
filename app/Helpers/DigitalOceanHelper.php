@@ -30,4 +30,18 @@ class DigitalOceanHelper
 
         return $this;
     }
+
+    public function getDomains()
+    {
+        return collect($this->domain->getAll())->mapWithKeys(function ($values) {
+            return [$values->name => $values->name];
+        })->toArray();
+    }
+
+    public function getDomainRecords($domain)
+    {
+        return collect($this->domainRecord->getAll($domain))->filter(function ($record) {
+            return $record->type == "CNAME" || $record->type == "A";
+        });
+    }
 }

@@ -35,21 +35,7 @@ class Setup extends Command
     public function handle()
     {
         if ($this->confirm("This will destroy any existing doddns configuration. Is that ok?")) {
-            $this->task("Creating local database", function () {
-                if (!is_dir($_SERVER['HOME'].'/.doddns/')) {
-                    mkdir($_SERVER['HOME'].'/.doddns/', 0700);
-                    $this->info("Created .doddns directory in user's home.");
-                }
-
-                file_put_contents(config('database.connections.sqlite.database'), "");
-                $this->info("Created or overwrited any actual databse");
-
-                Artisan::call('migrate', ['--force' => true]);
-
-                $this->info("Migrated tables");
-
-                return true;
-            });
+            $this->createDatabase();
         }
 
         $this->settings = new SettingsHelper();
@@ -63,6 +49,25 @@ class Setup extends Command
         }
 
         $this->info("All done! We're good to go!");
+    }
+
+    private function createDatabase()
+    {
+        $this->task("Creating local database", function () {
+            if (!is_dir($_SERVER['HOME'].'/.doddns/')) {
+                mkdir($_SERVER['HOME'].'/.doddns/', 0700);
+                $this->info("Created .doddns directory in user's home.");
+            }
+
+            file_put_contents(config('database.connections.sqlite.database'), "");
+            $this->info("Created or overwrited any actual databse");
+
+            Artisan::call('migrate', ['--force' => true]);
+
+            $this->info("Migrated tables");
+
+            return true;
+        });
     }
 
     private function updateToken($token)
