@@ -4,6 +4,7 @@ namespace App\Commands;
 
 use App\Helpers\DigitalOceanHelper;
 use App\Helpers\SettingsHelper;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\DB;
 use Ipify\Ip;
@@ -51,6 +52,8 @@ class UpdateRecords extends Command
         $records_to_update->each(function ($record) use ($current_ip) {
             $this->digitalocean->domainRecord->update($record->domain, $record->record_id, $record->record_name, $current_ip);
             ;
+
+            DB::update('update records set record_updated_at = ? where id = ?', [Carbon::now()->toDatetimeString(), $record->id]);
 
             $this->info("Updated ({$record->record_type}) {$record->record_name} of {$record->domain} to : {$current_ip}");
         });
