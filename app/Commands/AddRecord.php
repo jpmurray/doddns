@@ -24,28 +24,14 @@ class AddRecord extends Command
      */
     protected $description = 'Set which records to update.';
 
-    protected $settings;
-    protected $token;
-
-    private $digitalocean;
-
     /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(DigitalOceanHelper $digitalocean)
     {
-        $this->settings = new SettingsHelper();
-
-        if ($this->settings->error !== null) {
-            $this->error($this->settings->error);
-            return;
-        }
-
-        $this->digitalocean = new DigitalOceanHelper($this->settings->getToken());
-        
-        $domains = $this->digitalocean->getDomains();
+        $domains = $digitalocean->getDomains();
 
         $selected_domain = $this->menu("Which domain?", $domains)->open();
 
@@ -54,7 +40,7 @@ class AddRecord extends Command
             return;
         }
 
-        $records = $this->digitalocean->getDomainRecords($selected_domain);
+        $records = $digitalocean->getDomainRecords($selected_domain);
 
         $records_for_menu = $records->mapWithKeys(function ($values, $key) {
             return [$key => "{$values->name} ({$values->type}): {$values->data}"];

@@ -30,11 +30,9 @@ class UpdateToken extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(SettingsHelper $settings)
     {
-        $this->settings = new SettingsHelper();
-
-        if ($this->settings->error !== null) {
+        if ($settings->hasToken()) {
             $this->updateToken();
         } else {
             $this->insertToken();
