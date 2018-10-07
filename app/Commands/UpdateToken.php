@@ -3,7 +3,6 @@
 namespace App\Commands;
 
 use App\Helpers\SettingsHelper;
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\DB;
 use LaravelZero\Framework\Commands\Command;
 

@@ -3,7 +3,6 @@
 namespace App\Commands;
 
 use App\Helpers\DigitalOceanHelper;
-use App\Helpers\SettingsHelper;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\DB;
