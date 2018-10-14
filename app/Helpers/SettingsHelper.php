@@ -40,7 +40,7 @@ class SettingsHelper
     {
         $this->setupSettings();
 
-        return $this->settings->get($key);
+        return $this->settings->{$key};
     }
 
     /**
@@ -54,7 +54,8 @@ class SettingsHelper
         try {
             $this->setupSettings();
 
-            return $this->settings->has($key);
+            return is_object($this->settings) &&
+                property_exists($this->settings, $key);
         } catch (InvalidSettingException $exception) {
             return false;
         }
@@ -76,6 +77,6 @@ class SettingsHelper
             );
         }
 
-        $this->settings = DB::table('settings')->get();
+        $this->settings = DB::table('settings')->first();
     }
 }
