@@ -3,7 +3,6 @@
 namespace App\Commands;
 
 use App\Helpers\SettingsHelper;
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\DB;
 use LaravelZero\Framework\Commands\Command;
 
@@ -30,11 +29,9 @@ class UpdateToken extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(SettingsHelper $settings)
     {
-        $this->settings = new SettingsHelper();
-
-        if ($this->settings->error !== null) {
+        if ($settings->hasToken()) {
             $this->updateToken();
         } else {
             $this->insertToken();
