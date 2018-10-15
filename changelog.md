@@ -1,6 +1,7 @@
 # Changelog
 
 # X (Next release)
+- Now with more dependency injection thanks to @victorlap !
 
 # 1.2.1
 Updated readme to add notes on updating.
