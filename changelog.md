@@ -1,6 +1,9 @@
 # Changelog
 
 # X (Next release)
+- Nothing yet.
+
+# 1.3.0
 - Now with more dependency injection thanks to @victorlap !
 - Added ASCII logo from latest version of Laravel Zero.
 
