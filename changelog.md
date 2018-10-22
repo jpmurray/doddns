@@ -4,6 +4,8 @@
 - Records the latest IP that has been found / use while running the update command.
 - Adds a new command to see the latest known ip: `doddns last-known-ip`.
 - Updates IP with Digital Ocean only when the current IP is different than the last known IP.
+- Answering no to the database overwrite on setup actually stops the process.
+- `doddns setup` now show a menu with different options: first time setup, start from scratch and upgrade.
 
 # 1.3.0
 - Now with more dependency injection thanks to @victorlap !

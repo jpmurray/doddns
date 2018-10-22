@@ -16,7 +16,7 @@ It works. Might not be elegant, but it works!
 Depending on your mood, you can either [download the compiled version](https://github.com/jpmurray/doddns/raw/master/builds/doddns) or [build it yourself](https://laravel-zero.com/#/usage?id=building-a-standalone-application), then add it to your `$PATH` and run the setup command... And you're good to go!
 
 ### Updating?
-If you've pulled or downloaded a new version, be sure to run `doddns migrate` to make sure your local database is up to date!
+If you've pulled or downloaded a new version, be sure to run `doddns setup` and choose the upgrade option to make sure your local database is up to date! You can also forgo the menu to upgrade directly using `doddns setup -U`.
 
 ### Crontab
 If you want doddns to autoupdate with your current IP address, you should add an ntry to your cron tab like so: `* * * * * php /path-to-doddns/doddns schedule:run >> /dev/null 2>&1`.
