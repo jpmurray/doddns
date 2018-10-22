@@ -1,6 +1,7 @@
 # Changelog
 
 # X (Next release)
+- Nothing yet.
 
 # 1.4.0
 - Records the latest IP that has been found / use while running the update command.
@@ -18,7 +19,7 @@
 Updated readme to add notes on updating.
 
 # 1.2.0
-= Cleaning code a little
+- Cleaning code a little
 - Keeps a track of the lat update time of a record
 - Shows the last update time when doing `doddns records:list`
 
