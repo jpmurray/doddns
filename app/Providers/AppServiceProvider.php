@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Helpers\DigitalOceanHelper;
+use App\Helpers\SettingsHelper;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(SettingsHelper::class, function() {
+            return new SettingsHelper();
+        });
+
+        $this->app->singleton(DigitalOceanHelper::class, function() {
+            /** @var SettingsHelper $settings */
+            $settings = app(SettingsHelper::class);
+
+            return new DigitalOceanHelper($settings->getToken());
+        });
     }
 }

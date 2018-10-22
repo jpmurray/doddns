@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Exceptions\InvalidSettingException;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -10,37 +12,71 @@ use Illuminate\Support\Facades\DB;
 class SettingsHelper
 {
 
+    /**
+     * @var Collection
+     */
     private $settings;
-    private $token;
-
-    public $error = null;
-    
-    public function __construct()
-    {
-
-        if (!is_file(config('database.connections.sqlite.database'))) {
-            $this->error = "You have to run the setup command in order to create the local database.";
-            return $this;
-        }
-
-        $this->settings = DB::table('settings')->get();
-
-        if ($this->settings->isNotEmpty()) {
-            $this->token = $this->settings->first()->token;
-        } else {
-            $this->error = "There is no settings to the database.";
-        }
-
-        return $this;
-    }
 
     public function getSettings()
     {
         return $this->settings;
     }
 
+    public function hasToken()
+    {
+        return $this->hasSetting('token');
+    }
+
     public function getToken()
     {
-        return $this->token;
+        return $this->getSetting('token');
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    private function getSetting($key)
+    {
+        $this->setupSettings();
+
+        return $this->settings->{$key};
+    }
+
+    /**
+     * Check to see if the settings exists in the database
+     *
+     * @param $key
+     * @return boolean
+     */
+    private function hasSetting($key)
+    {
+        try {
+            $this->setupSettings();
+
+            return is_object($this->settings) &&
+                property_exists($this->settings, $key);
+        } catch (InvalidSettingException $exception) {
+            return false;
+        }
+    }
+
+    /**
+     * @throws InvalidSettingException
+     */
+    private function setupSettings()
+    {
+        // We bail if the settings are already loaded
+        if($this->settings) {
+           return;
+        }
+
+        if (!is_file(config('database.connections.sqlite.database'))) {
+            throw new InvalidSettingException(
+                "The local database does not exist. Please run the setup command."
+            );
+        }
+
+        $this->settings = DB::table('settings')->first();
     }
 }
