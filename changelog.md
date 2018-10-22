@@ -3,6 +3,7 @@
 # X (Next release)
 - Records the latest IP that has been found / use while running the update command.
 - Adds a new command to see the latest known ip: `doddns last-known-ip`.
+- Updates IP with Digital Ocean only when the current IP is different than the last known IP.
 
 # 1.3.0
 - Now with more dependency injection thanks to @victorlap !
