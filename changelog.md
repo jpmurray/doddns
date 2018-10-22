@@ -2,6 +2,7 @@
 
 # X (Next release)
 - Now with more dependency injection thanks to @victorlap !
+- Added ASCII logo from latest version of Laravel Zero.
 
 # 1.2.1
 Updated readme to add notes on updating.
