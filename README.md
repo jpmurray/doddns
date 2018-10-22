@@ -27,9 +27,10 @@ After that, doddns will try to update every hours by itself.
 
 You can then use the `doddns` command to see a list of possible actions:
 
-- `doddns setup`: will create local database and asks for DO personal acces token.
+- `doddns setup`: Shows a menu to either make first setup / start from cratch, or run upgrade commands after a version bump.
 - `doddns set-token {token}`: will set your DO personal access token, overwriting any existing value.
 - `doddns last-known-ip`: will output the last known IP that has been found / used.
+- `doddns version`: output the installed and available version, and make a basic check if you are up to date or not.
 - `doddns records:list`: list any added record that doddns tries to update.
 - `doddns records:add`: add a record to update to the database from exiting DO domains.
 - `doddns records:remove`: removes a record from doddns' database.

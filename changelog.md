@@ -6,6 +6,7 @@
 - Updates IP with Digital Ocean only when the current IP is different than the last known IP.
 - Answering no to the database overwrite on setup actually stops the process.
 - `doddns setup` now show a menu with different options: first time setup, start from scratch and upgrade.
+- `doddns version` outputs installed and available version, and checks if you are up to date.
 
 # 1.3.0
 - Now with more dependency injection thanks to @victorlap !
