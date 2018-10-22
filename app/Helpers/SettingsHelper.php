@@ -32,6 +32,16 @@ class SettingsHelper
         return $this->getSetting('token');
     }
 
+    public function hasLastKnownIP()
+    {
+        return $this->hasSetting('last_known_ip');
+    }
+
+    public function getLastKnownIP()
+    {
+        return $this->getSetting('last_known_ip');
+    }
+
     /**
      * @param $key
      * @return mixed
@@ -67,8 +77,8 @@ class SettingsHelper
     private function setupSettings()
     {
         // We bail if the settings are already loaded
-        if($this->settings) {
-           return;
+        if ($this->settings) {
+            return;
         }
 
         if (!is_file(config('database.connections.sqlite.database'))) {

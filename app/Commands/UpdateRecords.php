@@ -33,6 +33,11 @@ class UpdateRecords extends Command
     public function handle(DigitalOceanHelper $digitalocean)
     {
         $current_ip = Ip::get();
+
+        DB::table('settings')->update(
+            ['last_known_ip' => $current_ip]
+        );
+
         $records_to_update = DB::table('records')->get();
 
         $records_to_update->each(function ($record) use ($current_ip, $digitalocean) {

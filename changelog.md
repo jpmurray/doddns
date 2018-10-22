@@ -1,7 +1,8 @@
 # Changelog
 
 # X (Next release)
-- Nothing yet.
+- Records the latest IP that has been found / use while running the update command.
+- Adds a new command to see the latest known ip: `doddns last-known-ip`.
 
 # 1.3.0
 - Now with more dependency injection thanks to @victorlap !
