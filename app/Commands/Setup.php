@@ -14,7 +14,7 @@ class Setup extends Command
      *
      * @var string
      */
-    protected $signature = 'setup';
+    protected $signature = 'setup {--U|upgrade : Run the upgrade command without menu prompt.}';
 
     /**
      * The description of the command.
@@ -30,9 +30,44 @@ class Setup extends Command
      */
     public function handle(SettingsHelper $settings)
     {
-        if ($this->confirm("This will destroy any existing doddns configuration. Is that ok?")) {
-            $this->createDatabase();
+
+        if ($this->option('upgrade')) {
+            $option = 2;
+        } else {
+            $option = $this->menu('What do you want to do?', [
+                'First time setup', //0
+                'Restart from scratch', //1
+                'Ugprade to latest version', //2
+            ])->open();
         }
+
+        if (is_null($option)) {
+            $this->info("Doing nothing.");
+            return;
+        }
+
+        if ($option == 2) {
+            $this->upgrade();
+            return;
+        }
+
+        $this->makeSetup();
+    }
+
+    private function upgrade()
+    {
+        $this->callSilent('migrate');
+        $this->info("Upgraded!");
+    }
+
+    private function makeSetup()
+    {
+        if (!$this->confirm("This will destroy any existing doddns configuration. Is that ok?")) {
+            $this->info("Doing nothing.");
+            return;
+        }
+
+        $this->createDatabase();
 
         $token = $this->ask("What is your Digital Ocean peronal access token?");
 
