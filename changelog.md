@@ -1,8 +1,8 @@
 # Changelog
 
 # X (Next release)
-- Nothing yet.
-
+- Stores the installed version to the settings table when installing for the first time (defaults to current).
+ 
 # 2.0.0
 - Moved configuration files to the `.config` directory of the user's home. *Be sure to run the upgrade command*.
 

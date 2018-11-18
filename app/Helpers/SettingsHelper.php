@@ -32,6 +32,16 @@ class SettingsHelper
         return $this->getSetting('token');
     }
 
+    public function hasInstalledVersion()
+    {
+        return $this->hasSetting('installed_version');
+    }
+
+    public function getInstalledVersion()
+    {
+        return $this->getSetting('installed_version');
+    }
+
     public function hasLastKnownIP()
     {
         return $this->hasSetting('last_known_ip');
