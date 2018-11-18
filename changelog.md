@@ -1,6 +1,7 @@
 # Changelog
 
 # X (Next release)
+- Nothing yet.
 
 # 2.0.0
 - Moved configuration files to the `.config` directory of the user's home. *Be sure to run the upgrade command*.
@@ -21,7 +22,7 @@
 Updated readme to add notes on updating.
 
 # 1.2.0
-= Cleaning code a little
+- Cleaning code a little
 - Keeps a track of the lat update time of a record
 - Shows the last update time when doing `doddns records:list`
 
