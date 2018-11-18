@@ -61,6 +61,11 @@ class Setup extends Command
         }
 
         $this->callSilent('migrate');
+
+        DB::table('settings')->update(
+            ['installed_version' => config("app.version")]
+        );
+
         $this->info("Upgraded!");
     }
 
