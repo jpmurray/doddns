@@ -51,16 +51,27 @@ class Setup extends Command
             return;
         }
 
-        $this->makeSetup();
+        $this->makeSetup($settings);
     }
 
     private function upgrade()
     {
+        if (config("app.version") < "2.0.0") {
+            $this->upgradeV1ToV2();
+        }
         $this->callSilent('migrate');
         $this->info("Upgraded!");
     }
 
-    private function makeSetup()
+    public function upgradeV1ToV2()
+    {
+        if (is_dir($_SERVER['HOME'].'/.doddns/')) {
+            $this->info("Moving old configuration directory to a new location.");
+            rename($_SERVER['HOME'].'/.doddns/', $_SERVER['HOME'].'/.config/doddns');
+        }
+    }
+
+    private function makeSetup($settings)
     {
         if (!$this->confirm("This will destroy any existing doddns configuration. Is that ok?")) {
             $this->info("Doing nothing.");
@@ -83,9 +94,9 @@ class Setup extends Command
     private function createDatabase()
     {
         $this->task("Creating local database", function () {
-            if (!is_dir($_SERVER['HOME'].'/.doddns/')) {
-                mkdir($_SERVER['HOME'].'/.doddns/', 0700);
-                $this->info("Created .doddns directory in user's home.");
+            if (!is_dir($_SERVER['HOME'].'/.config/doddns/')) {
+                mkdir($_SERVER['HOME'].'/.config/doddns/', 0700);
+                $this->info("Created doddns' config directory in user's home .config directory.");
             }
 
             file_put_contents(config('database.connections.sqlite.database'), "");
