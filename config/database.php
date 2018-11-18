@@ -35,7 +35,7 @@ return [
 
         'sqlite' => [
             'driver' => 'sqlite',
-            'database' => $_SERVER['HOME'].'/.doddns/database.sqlite',
+            'database' => $_SERVER['HOME'].'/.config/doddns/database.sqlite',
             'prefix' => '',
         ],
 
