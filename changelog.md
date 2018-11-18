@@ -2,6 +2,7 @@
 
 # X (Next release)
 - Stores the installed version to the settings table when installing for the first time (defaults to current).
+- Changed conditions for upgrade from versiob `1.*` to `2.*`.
  
 # 2.0.0
 - Moved configuration files to the `.config` directory of the user's home. *Be sure to run the upgrade command*.

@@ -47,18 +47,19 @@ class Setup extends Command
         }
 
         if ($option == 2) {
-            $this->upgrade();
+            $this->upgrade($settings);
             return;
         }
 
         $this->makeSetup($settings);
     }
 
-    private function upgrade()
+    private function upgrade($settings)
     {
-        if (config("app.version") < "2.0.0") {
+        if ($settings->hasInstalledVersion() == false || $settings->getInstalledVersion() < "2.1.0") {
             $this->upgradeV1ToV2();
         }
+
         $this->callSilent('migrate');
         $this->info("Upgraded!");
     }
