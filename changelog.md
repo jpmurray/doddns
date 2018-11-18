@@ -2,6 +2,9 @@
 
 # X (Next release)
 
+# 2.0.0
+- Moved configuration files to the `.config` directory of the user's home. *Be sure to run the upgrade command*.
+
 # 1.4.0
 - Records the latest IP that has been found / use while running the update command.
 - Adds a new command to see the latest known ip: `doddns last-known-ip`.
