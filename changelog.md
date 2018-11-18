@@ -1,7 +1,12 @@
 # Changelog
 
 # X (Next release)
-- Stores the installed version to the settings table when installing for the first time (defaults to current).
+- Nothing yet.
+
+# 2.1.0
+- Stores the installed version to the `settings` table when installing / upgrading for the first time (defaults to current).
+- Updated installed version field in `settings` table when upgrading.
+- Added new informations to the `doddns version` command.
 - Changed conditions for upgrade from versiob `1.*` to `2.*`.
  
 # 2.0.0
