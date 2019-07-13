@@ -3,6 +3,9 @@
 # X (Next release)
 - Nothing yet.
 
+# 3.0.0
+- Refactored application so it uses a single config file (in json format) rather than a SQLite database.
+
 # 2.1.0
 - Stores the installed version to the `settings` table when installing / upgrading for the first time (defaults to current).
 - Updated installed version field in `settings` table when upgrading.

@@ -3,10 +3,9 @@
 namespace App\Commands;
 
 use App\Helpers\DigitalOceanHelper;
-use App\Helpers\SettingsHelper;
+use App\Helpers\ConfigHelper;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Facades\DB;
 use Ipify\Ip;
 use LaravelZero\Framework\Commands\Command;
 
@@ -17,35 +16,38 @@ class UpdateRecords extends Command
      *
      * @var string
      */
-    protected $signature = 'records:update';
+    protected $signature = 'record:update';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Update saved records to current IP address.';
+    protected $description = 'Update saved record to current IP address.';
 
     /**
      * Helper to interact with Digital Ocean API.
      */
     protected $digitalocean;
 
+    protected $config;
+
     /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle(DigitalOceanHelper $digitalocean, SettingsHelper $settings)
+    public function handle(DigitalOceanHelper $digitalocean, ConfigHelper $config)
     {
         $this->digitalocean = $digitalocean;
+        $this->config = $config;
 
         $current_ip = Ip::get();
-        $has_ip_changed = $this->checkIfIPChanged($current_ip, $settings->getLastKnownIP());
-
+        $has_ip_changed = $config->get("last_ip", true) != $current_ip;
+        
         if (!$has_ip_changed) {
             $this->info("IP address has not changed. Doing nothing.");
-            return;
+            exit(1);
         }
 
         $this->updateIPAddress($current_ip);
@@ -53,26 +55,15 @@ class UpdateRecords extends Command
 
     private function updateIPAddress($current_ip)
     {
-        DB::table('settings')->update(
-            ['last_known_ip' => $current_ip]
-        );
+        $this->config->set("last_ip", $current_ip);
 
-        $records_to_update = DB::table('records')->get();
+        $record = $this->config->get('record');
 
-        $records_to_update->each(function ($record) use ($current_ip) {
-            $this->digitalocean->domainRecord->update($record->domain, $record->record_id, $record->record_name, $current_ip);
+        $this->digitalocean->domainRecord->update($record['domain'], $record['record_id'], $record['record_name'], $current_ip);
 
-            DB::update('update records set record_updated_at = ? where id = ?', [Carbon::now()->toDatetimeString(), $record->id]);
+        $this->config->set("last_ip_datestamp", Carbon::now()->toDatetimeString());
 
-            $this->info("Updated ({$record->record_type}) {$record->record_name} of {$record->domain} to : {$current_ip}");
-        });
-
-        $this->info("IP updated to {$current_ip}!");
-    }
-
-    private function checkIfIPChanged($current_ip, $last_known_ip)
-    {
-        return $current_ip != $last_known_ip;
+        $this->info("Updated ({$record['record_type']}) {$record['record_name']} of {$record['domain']} to : {$current_ip}");
     }
 
     /**
