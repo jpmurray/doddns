@@ -21,6 +21,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "illuminate/database": "5.8.*",
         "laravel-zero/framework": "5.8.*",
+        "nunomaduro/laravel-console-menu": "^2.1",
         "toin0u/digitalocean-v2": "~2.0",
         "zendframework/zend-text": "^2.7"
     },
