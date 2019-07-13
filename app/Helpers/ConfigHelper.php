@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Exceptions\InvalidConfigException;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -33,9 +34,21 @@ class ConfigHelper
      * Returns an array of the current configuration file
      * @return array Current configuration options.
      */
-    public function get()
+    public function get($name = null)
     {
-        return json_decode(Storage::get('config.json'), true);
+        $config = json_decode(Storage::get('config.json'), true);
+
+        if ($name === null) {
+            return $config;
+        }
+
+        if (!isset($config[$name])) {
+            throw new InvalidConfigException(
+                "Could not find any value for \"{$name}\" in config file."
+            );
+        }
+
+        return $config[$name];
     }
 
     /**
