@@ -28,6 +28,6 @@ class LastKnownIP extends Command
      */
     public function handle(ConfigHelper $config)
     {
-        $this->info($config->get("last_ip"));
+        $this->info("Last update sent the IP {$config->get('last_ip')} on {$config->get('last_ip_datestamp')}");
     }
 }

@@ -49,7 +49,7 @@ class ConfigHelper
      * Returns an array of the current configuration file
      * @return array       Current config array
      */
-    public function get($name = null)
+    public function get($name = null, $silent = false)
     {
         $config = json_decode(Storage::get('config.json'), true);
 
@@ -58,9 +58,13 @@ class ConfigHelper
         }
 
         if (!isset($config[$name])) {
-            throw new InvalidConfigException(
-                "Could not find any value for \"{$name}\" in config file. Maybe things might not be properly setup or DoDDNS did not run at least once yet."
-            );
+            if (!$silent) {
+                throw new InvalidConfigException(
+                    "Could not find any value for \"{$name}\" in config file. Maybe things might not be properly setup or DoDDNS did not run at least once yet."
+                );
+            } else {
+                return false;
+            }
         }
 
         return $config[$name];
