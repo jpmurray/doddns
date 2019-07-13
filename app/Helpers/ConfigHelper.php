@@ -44,7 +44,7 @@ class ConfigHelper
 
         if (!isset($config[$name])) {
             throw new InvalidConfigException(
-                "Could not find any value for \"{$name}\" in config file."
+                "Could not find any value for \"{$name}\" in config file. Maybe things might not be properly setup or DoDDNS did not run at least once yet."
             );
         }
 

@@ -2,7 +2,7 @@
 
 namespace App\Commands;
 
-use App\Helpers\SettingsHelper;
+use App\Helpers\ConfigHelper;
 use LaravelZero\Framework\Commands\Command;
 
 class LastKnownIP extends Command
@@ -12,7 +12,7 @@ class LastKnownIP extends Command
      *
      * @var string
      */
-    protected $signature = 'last-known-ip';
+    protected $signature = 'ip:last';
 
     /**
      * The description of the command.
@@ -26,25 +26,8 @@ class LastKnownIP extends Command
      *
      * @return mixed
      */
-    public function handle(SettingsHelper $settings)
+    public function handle(ConfigHelper $config)
     {
-        if (!$settings->hasLastKnownIP()) {
-            $this->error("Can't find required field in database. If you have updated lately, you should run doddns migrate.");
-            return;
-        }
-        
-        $this->showLastKnownIp($settings);
-    }
-
-    private function showLastKnownIp($settings)
-    {
-        $last_known_ip = $settings->getLastKnownIP();
-
-        if (is_null($last_known_ip)) {
-            $this->info("Nothing. Please run the doddns:records update command at last once.");
-            return;
-        }
-
-        $this->info($last_known_ip);
+        $this->info($config->get("last_ip"));
     }
 }
