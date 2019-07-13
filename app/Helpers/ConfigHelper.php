@@ -16,9 +16,24 @@ class ConfigHelper
     }
 
     /**
+     * Will remove a config value from the config file and return updated config.
+     * @param  string $name Name of the config value to remove
+     * @return array       Updated config array
+     */
+    public function remove($name)
+    {
+        $config = $this->get();
+        unset($config[$name]);
+        Storage::put('config.json', json_encode($config));
+        
+        return json_decode(Storage::get('config.json'), true);
+    }
+
+    /**
      * Will set a config value to the config file and return updated config.
      * @param string $name  Name of the setting
      * @param mixed $value Value of the setting,
+    * @return array       Updated config array
      */
     public function set($name, $value)
     {
@@ -32,7 +47,7 @@ class ConfigHelper
 
     /**
      * Returns an array of the current configuration file
-     * @return array Current configuration options.
+     * @return array       Current config array
      */
     public function get($name = null)
     {
