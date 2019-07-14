@@ -3,6 +3,9 @@
 # X (Next release)
 - Nothing yet.
 
+# 3.0.1
+- Prepared for Packagist distribution.
+
 # 3.0.0
 - Refactored application so it uses a single config file (in json format) rather than a SQLite database.
 

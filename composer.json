@@ -1,18 +1,18 @@
 {
-    "name": "laravel-zero/laravel-zero",
-    "description": "The Laravel Zero Framework.",
-    "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
-    "homepage": "https://laravel-zero.com",
-    "type": "project",
+    "name": "jpmurray/doddns",
+    "description": "Small tool to use Digital Ocean as a Dynamic DNS (DDNS) service.",
+    "keywords": ["digitalocean", "digital ocean", "ddns", "laravel zero", "console", "cli"],
+    "homepage": "https://github.com/jpmurray/doddns",
+    "type": "library",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
+        "issues": "https://github.com/jpmurray/doddns/issues",
+        "source": "https://github.com/jpmurray/doddnslaravel-zero"
     },
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Jean-Phlippe Murray",
+            "email": "jp@atomescroch.us"
         }
     ],
     "require": {
@@ -41,10 +41,7 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true,
-        "platform": {
-            "ext-posix": "0"
-        }
+        "optimize-autoloader": true
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -53,5 +50,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "bin": ["doddns"]
+    "bin": ["./builds/doddns"]
 }
