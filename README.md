@@ -40,6 +40,7 @@ After that, doddns will try to update every hours by itself.
 You can then use the `doddns` command to see a list of possible actions:
 
 - `ip:last`: will output the last known IP that has been found / used and the timestamp of last update.
+- `ip:current`: will query ipcheck.doddns.com to get your current IP address.
 - `record:delete`: removes saved record from the config file.
 - `record:select`: Display a list of domains and records found with your DigitalOcean token to choose which to update with your current IP address.
 - `record:update`: updates the selected record in config file with current IP.
