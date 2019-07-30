@@ -24,7 +24,7 @@ This will install DODDNS globally on your machine. For DODDNS to work correctly 
 Next, you will have to add your DigitalOcean API token with the `token:add` command and then select which record you want to update with the `record:select` command. After that, you're good to go!
 
 ### Updating
-#### Version 3.0.0
+#### Version 3.0.0 and after
 Version 3.0.0 changed a lot in term of workflow. If you install DODDNS from `< 3.0.0`, it is suggested that you remove the `doddns` folder from the `.config` folder in your home directory entirely then add your token and choose the domain to record back again so everything is clean.
 
 #### Before 3.0.0
@@ -40,10 +40,15 @@ After that, doddns will try to update every hours by itself.
 You can then use the `doddns` command to see a list of possible actions:
 
 - `ip:last`: will output the last known IP that has been found / used and the timestamp of last update.
+- `ip:current`: will query ipcheck.doddns.com to get your current IP address.
 - `record:delete`: removes saved record from the config file.
 - `record:select`: Display a list of domains and records found with your DigitalOcean token to choose which to update with your current IP address.
 - `record:update`: updates the selected record in config file with current IP.
 - `token:add {token}`: will set your DigitalOcean personal access token, overwriting any existing value.
+
+### ipcheck.doddns.com
+
+We check your current IP address by querying our own small and simple service located at [https://ipcheck.doddns.com](https://ipcheck.doddns.com). You can see its [source here](https://github.com/jpmurray/ipcheck.doddns.com).
 
 ## PRs
 Any help is appreciated, please PR to the develop branch.

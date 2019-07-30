@@ -2,11 +2,11 @@
 
 namespace App\Commands;
 
-use App\Helpers\DigitalOceanHelper;
 use App\Helpers\ConfigHelper;
+use App\Helpers\DigitalOceanHelper;
+use App\Helpers\IPCheck;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
-use Ipify\Ip;
 use LaravelZero\Framework\Commands\Command;
 
 class UpdateRecords extends Command
@@ -42,7 +42,9 @@ class UpdateRecords extends Command
         $this->digitalocean = $digitalocean;
         $this->config = $config;
 
-        $current_ip = Ip::get();
+        $ipcheck = new IPCheck();
+
+        $current_ip = $ipcheck->get();
         $has_ip_changed = $config->get("last_ip", true) != $current_ip;
         
         if (!$has_ip_changed) {

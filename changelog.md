@@ -1,7 +1,9 @@
 # Changelog
 
 # X (Next release)
-- Nothing yet.
+
+# 3.1.0
+- Moved to a custom solution (ipcheck.doddns.com)[https://ipcheck.doddns.com] to find current IP addresses.
 
 # 3.0.1
 - Prepared for Packagist distribution.
