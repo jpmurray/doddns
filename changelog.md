@@ -1,6 +1,8 @@
 # Changelog
 
 # X (Next release)
+
+# 3.2.0
 - Added a command to toggle on or off desktop notifications.
 - If desktop notifications are enabled, DODDNS will notify on successful update of domain when IP changes.
 
