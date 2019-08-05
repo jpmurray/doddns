@@ -2,6 +2,9 @@
 
 # X (Next release)
 
+# 3.2.1
+- Fixing app not loading from CLI because source wasn't built. Sorry!
+
 # 3.2.0
 - Added a command to toggle on or off desktop notifications.
 - If desktop notifications are enabled, DODDNS will notify on successful update of domain when IP changes.
