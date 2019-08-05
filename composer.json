@@ -20,6 +20,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel-zero/framework": "5.8.*",
         "nunomaduro/laravel-console-menu": "^2.1",
+        "nunomaduro/laravel-desktop-notifier": "^2.2",
         "toin0u/digitalocean-v2": "~2.0",
         "zendframework/zend-text": "^2.7"
     },
