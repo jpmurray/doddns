@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00584b39f82552110bb7b7cd80bb8878",
+    "content-hash": "ed288ab5dabafde13e5b8046ef2cbcb7",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -1503,21 +1503,21 @@
         },
         {
             "name": "nunomaduro/laravel-desktop-notifier",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/laravel-desktop-notifier.git",
-                "reference": "50a91b569268770647e3f4e9cfeaeb7bfb77ae26"
+                "reference": "3b93cd1a7526ce7bb3542185bcc4901650dc59e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/laravel-desktop-notifier/zipball/50a91b569268770647e3f4e9cfeaeb7bfb77ae26",
-                "reference": "50a91b569268770647e3f4e9cfeaeb7bfb77ae26",
+                "url": "https://api.github.com/repos/nunomaduro/laravel-desktop-notifier/zipball/3b93cd1a7526ce7bb3542185bcc4901650dc59e3",
+                "reference": "3b93cd1a7526ce7bb3542185bcc4901650dc59e3",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "5.6.*|5.7.*|5.8.*",
-                "illuminate/support": "5.6.*|5.7.*|5.8.*",
+                "illuminate/console": "5.6.*|5.7.*|5.8.*|^6.0",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*|^6.0",
                 "jolicode/jolinotif": "^2.0",
                 "php": "^7.1.3"
             },
@@ -1565,7 +1565,7 @@
                 "php",
                 "wrapper"
             ],
-            "time": "2019-01-23T18:58:44+00:00"
+            "time": "2019-08-04T12:40:14+00:00"
         },
         {
             "name": "php-school/cli-menu",

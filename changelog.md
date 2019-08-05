@@ -1,6 +1,7 @@
 # Changelog
 
 # X (Next release)
+- Added a command to toggle on or off desktop notifications.
 
 # 3.1.0
 - Moved to a custom solution (ipcheck.doddns.com)[https://ipcheck.doddns.com] to find current IP addresses.
