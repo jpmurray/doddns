@@ -66,6 +66,10 @@ class UpdateRecords extends Command
         $this->config->set("last_ip_datestamp", Carbon::now()->toDatetimeString());
 
         $this->info("Updated ({$record['record_type']}) {$record['record_name']} of {$record['domain']} to : {$current_ip}");
+
+        if ($config->get('desktop_notifications', true)) {
+            $this->notify("DODDNS", "IP address updated for {$record['name']} on {$record['domain']}.");
+        }
     }
 
     /**
