@@ -1,8 +1,12 @@
 # Changelog
 
-# X (Next release)
+## X (Next release)
+
+## 3.3.0
 
 -   Changed path to build code in `composer.json`.
+-   Updated packages and framework to latest version.
+-   PHP minimum version was updated to `7.2.5`.
 
 ## 3.2.1
 
