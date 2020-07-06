@@ -1,7 +1,14 @@
 {
     "name": "jpmurray/doddns",
     "description": "Small tool to use Digital Ocean as a Dynamic DNS (DDNS) service.",
-    "keywords": ["digitalocean", "digital ocean", "ddns", "laravel zero", "console", "cli"],
+    "keywords": [
+        "digitalocean",
+        "digital ocean",
+        "ddns",
+        "laravel zero",
+        "console",
+        "cli"
+    ],
     "homepage": "https://github.com/jpmurray/doddns",
     "type": "library",
     "license": "MIT",
@@ -50,5 +57,7 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "bin": ["./builds/doddns"]
+    "bin": [
+        "/builds/doddns"
+    ]
 }
