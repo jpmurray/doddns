@@ -2,6 +2,10 @@
 
 ## X (Next release)
 
+## 3.3.2
+
+-   Fixed typos.
+
 ## 3.3.1
 
 -   Added Docker image (use at your own risk, we're at a testing phase with this).
