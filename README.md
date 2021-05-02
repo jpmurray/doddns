@@ -6,7 +6,7 @@ It'll regularly check your IP address and update a selected Digital Ocean domain
 
 ## Requirement
 
-- PHP >= 7.1.3 and Composer installed.
+- PHP >= 7.3 and Composer installed.
 - A Digital Ocean [Personal Access Token](https://www.digitalocean.com/docs/api/create-personal-access-token/) that has the `read` and `write` permission.
 - At least one domain name added to your account.
 - At least a `cname` or an `A` record added to a domain that DODDNS will try to update.
