@@ -2,6 +2,10 @@
 
 ## X (Next release)
 
+## 3.4.0
+
+- Upgraded to Laravel Zero 8.X. Minimum PHP requirement now at 7.3.
+
 ## 3.3.2
 
 -   Fixed typos.
