@@ -2,6 +2,10 @@
 
 ## X (Next release)
 
+## 3.4.2
+
+- Box file was empty, didn't compile binary correctly.
+
 ## 3.4.1
 
 - Fixing binary fine location
