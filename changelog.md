@@ -2,6 +2,10 @@
 
 ## X (Next release)
 
+## 3.5.0
+
+- Usage of the Digital Ocean API Client has changed, fixed its usage.
+
 ## 3.4.2
 
 - Box file was empty, didn't compile binary correctly.

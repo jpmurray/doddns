@@ -24,11 +24,12 @@
     ],
     "require": {
         "php": "^7.3",
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "^7.2",
         "laravel-zero/framework": "^8.0",
         "nunomaduro/laravel-console-menu": "^3.1",
         "nunomaduro/laravel-desktop-notifier": "^2.2",
-        "toin0u/digitalocean-v2": "~2.0",
+        "toin0u/digitalocean-v2": "~4.3",
+        "http-interop/http-factory-guzzle": "^1.0",
         "laminas/laminas-text": "^2.7"
     },
     "require-dev": {
